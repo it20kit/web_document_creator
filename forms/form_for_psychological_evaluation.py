@@ -4,7 +4,7 @@ from pydantic import BaseModel
 class FormForPsychologicalEvaluation(BaseModel):
     """Описывает все поля формы для создания документа психологической оценки ребенка"""
     date_of_verification: str | None = None
-    fio: str | None = None
+    fio: str
     date_of_birth: str | None = None
     visited_group: str | None = None
     reason_for_examination: str | None = None

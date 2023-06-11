@@ -14,7 +14,7 @@ async def homepage():
     """Контролер домашней страницы"""
     return JSONResponse({"name": "Konstantin"})
 
-@app.post('/psychological_evaluation')
+@app.post('/api/psychological_evaluation')
 async def create_psychological_evaluation_docx(form_descriptor: FormDescriptor):
     """Контролер для создания психологической оценки ребенка"""
     path_to_file = IDocument().create_psychological_evaluation_docx(form_descriptor.field)

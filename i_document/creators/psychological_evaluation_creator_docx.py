@@ -18,18 +18,31 @@ class PsychologicalEvaluationCreatorDocx(AbstractDocumentCreator):
     def create_document(self, data: FormForPsychologicalEvaluation) -> DocumentDescriptor:
         """Создать документ психологической оценки и обернуть его в дескриптор"""
         document = Document()
-        self.__set_standard_for_all_document(document)
-        self.__add_introductory_heading(document)
-        self.__add_introductory_table(document, data)
-        self.document_tolls.add_empty_string(document)
-        self.__add_heading_main_block(document)
-        self.__add_block_one(document, data)
-        self.__add_block_two(document, data)
-        self.__add_block_thee(document, data)
-        self.__add_block_with_conclusion(document, data)
-        self.document_tolls.add_empty_string(document)
-        self.__add_table_with_signatures(document)
+        self.__add_title_block(document, data['titleBlock'])
+        for block in data.blocks:
+            self.__add_block(document, block)
+        # self.__set_standard_for_all_document(document)
+        # self.__add_introductory_heading(document)
+        # self.__add_introductory_table(document, data)
+        # self.document_tolls.add_empty_string(document)
+        # self.__add_heading_main_block(document)
+        # self.__add_block_one(document, data)
+        # self.__add_block_two(document, data)
+        # self.__add_block_thee(document, data)
+        # self.__add_block_with_conclusion(document, data)
+        # self.document_tolls.add_empty_string(document)
+        # self.__add_table_with_signatures(document)
         return DocumentDescriptor(self.create_name_document(data), document)
+
+    def __add_block(self, document, block):
+        type = block.type
+        block_creator = get_block_creator_by_type(type)
+        block_creator.create(document, block)
+
+    def create(self, document, block_desc):
+        rows = block_desc
+        for row in rows:
+            pass
 
     def create_name_document(self, data: FormForPsychologicalEvaluation) -> str:
         """Создать и вернуть имя документа"""
@@ -67,7 +80,58 @@ class PsychologicalEvaluationCreatorDocx(AbstractDocumentCreator):
         table.columns[1].width = Cm(12)
         self.__add_data_in_introductory_table(table, data)
 
-    def __add_data_in_introductory_table(self, table, data: FormForPsychologicalEvaluation) -> None:
+    def __add_table(self, document, data):
+        table = None
+        if data['title'] != '':
+            pass
+        text_size = 12
+        for index in range(len(data['rows'])):
+            row = data['rows'][index]
+            value = row['value']
+            translation = row['translation']
+            cell = table.cell(index, 0)
+            self.document_tolls.add_content_for_cell_table(cell, translation, text_size, WD_PARAGRAPH_ALIGNMENT.LEFT)
+            if value is not None:
+                cell = table.cell(index, 1)
+                self.document_tolls.add_content_for_cell_table(cell, value, text_size, WD_PARAGRAPH_ALIGNMENT.LEFT)
+        document.add_table()
+
+
+    def __add_data_in_introductory_table(self, table , d):
+        """Набить данными вводную таблицу"""
+        t = {
+            'date_of_verification': 'Дата провередения',
+            'fio': 'Фамилия, имя ребёнка:',
+            'date_of_birth': 'Дата рождения:',
+            'visited_group': 'Посещаемая группа:',
+            'reason_for_examination': 'Причина обследования:',
+            'nature_of_diagnosis': 'Характер диагностики:',
+            'methods': 'Используемые методики и\\или диагностический комплект',
+        }
+        _ = [
+            {
+                'key': 'date_of_verification',
+                'value': '21.03.1999'
+            },
+            {
+                'key': 'fio',
+                'value': 'Ohla Bistin'
+            }
+        ]
+        _d = d.dict()
+        keys = list(_d.keys())
+        text_size = 12
+        for index in range(7):
+            key = keys[index]
+            cell = table.cell(index, 0)
+            self.document_tolls.add_content_for_cell_table(cell, t[key], text_size, WD_PARAGRAPH_ALIGNMENT.LEFT)
+            value = _d[key]
+            if value is not None:
+                cell = table.cell(index, 1)
+                self.document_tolls.add_content_for_cell_table(cell, value, text_size, WD_PARAGRAPH_ALIGNMENT.LEFT)
+
+
+    def __foo(self, table, data: FormForPsychologicalEvaluation) -> None:
         """Набить данными вводную таблицу"""
         cell = table.cell(0, 0)
         text = "Дата проведения:"

@@ -9,6 +9,6 @@ class IDocument:
         pass
 
     @staticmethod
-    def create_psychological_evaluation_docx(data: object):
+    def create_psychological_evaluation_docx(form: object):
         """Создание документа психологической оценки ребенка"""
-        return DocumentManager('./dist/').create_document(PsychologicalEvaluationCreatorDocx(),data)
+        return DocumentManager('./dist/').create_document(PsychologicalEvaluationCreatorDocx(),form)

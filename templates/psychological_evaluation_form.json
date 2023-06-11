@@ -1,0 +1,50 @@
+{
+	"titleBlock": {
+		"mainTitle": "Заключение",
+		"subTitle": "по результатам психологического обследования"
+	},
+	"blocks": [
+		{
+			"title": "",
+			"type": "table",
+			"rows": [
+				{
+					"translation": "Дата проведения",
+					"value": "{{date_of_verification}}"
+				},
+				{
+					"translation": "Фамилия, имя, отчество",
+					"value": "{{fio}}"
+				}
+			]
+		},
+		{
+			"title": "Результаты диагностики и наблюдения за ребёнком в ходе обследования",
+			"type": "numbered_list",
+			"rows": [
+				{
+					"title": "Особенности эмоционально-волевой сферы и поведения ребёнка",
+					"rows": [
+                      {
+						"translation": "Средство коммуникации",
+                        "value": "{{means_of_communication}}"
+                      }
+                    ]
+				},
+				{
+					"title": "Особенности деятельности во время обследования",
+					"rows": [
+						{
+							"key": "presence_and_persistence",
+							"value": "{{presence_and_persistence}}"
+						},
+						{
+							"key": "emotional_state",
+							"value": "{{emotional_state}}"
+						}
+					]
+				}
+			]
+		}
+	]
+}

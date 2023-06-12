@@ -1,12 +1,10 @@
 from docx.enum.text import *
 from docx.shared import *
-from i_document.creators.abstract_document_creator import AbstractDocumentCreator
+from document_factory.creators.abstract_document_creator import AbstractDocumentCreator
 from docx import Document
-from i_document.document_descriptor import DocumentDescriptor
-from forms.form_for_psychological_evaluation import  FormForPsychologicalEvaluation
-from i_document.tools.document_tools import DocumentTools
-import datetime
-from transliterate import translit
+from document_factory.document_descriptor import DocumentDescriptor
+from forms.form_for_psychological_evaluation import FormForPsychologicalEvaluation
+from document_factory.tools.document_tools import DocumentTools
 
 
 class PsychologicalEvaluationCreatorDocx(AbstractDocumentCreator):
@@ -15,29 +13,27 @@ class PsychologicalEvaluationCreatorDocx(AbstractDocumentCreator):
     def __init__(self):
         self.document_tolls = DocumentTools()
 
-    def create_document(self, data: FormForPsychologicalEvaluation) -> DocumentDescriptor:
+    def create_document(self, form: dict) -> DocumentDescriptor:
         """Создать документ психологической оценки и обернуть его в дескриптор"""
         document = Document()
         self.__set_standard_for_all_document(document)
         self.__add_introductory_heading(document)
-        self.__add_introductory_table(document, data)
-        self.document_tolls.add_empty_string(document)
-        self.__add_heading_main_block(document)
-        self.__add_block_one(document, data)
-        self.__add_block_two(document, data)
-        self.__add_block_thee(document, data)
-        self.__add_block_with_conclusion(document, data)
-        self.document_tolls.add_empty_string(document)
-        self.__add_table_with_signatures(document)
-        return DocumentDescriptor(self.create_name_document(data), document)
 
-    def create_name_document(self, data: FormForPsychologicalEvaluation) -> str:
+        # self.__add_introductory_table(document, data)
+        # self.document_tolls.add_empty_string(document)
+        # self.__add_heading_main_block(document)
+        # self.__add_block_one(document, data)
+        # self.__add_block_two(document, data)
+        # self.__add_block_thee(document, data)
+        # self.__add_block_with_conclusion(document, data)
+        # self.document_tolls.add_empty_string(document)
+        # self.__add_table_with_signatures(document)
+        return DocumentDescriptor(self.create_name_document(form), document)
+
+    def create_name_document(self, form: dict) -> str:
         """Создать и вернуть имя документа"""
-        today_data = str(datetime.date.today())
-        name_child = data.fio
-        name_child = translit(name_child, "ru", reversed=True)
-        name_child = name_child.replace(' ', '_')
-        return name_child + '_' + today_data + ".docx"
+        name_child = form.get('blocks')[0].get('rows')[1].get('value')
+        return name_child
 
     def save(self, document, name):
         """Сохранить документ"""

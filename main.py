@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 from starlette.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
-from forms.form_descriptor import FormDescriptor
-from i_document.i_document import IDocument
-from i_document.document_manager import DocumentManager
+from document_factory.i_document import IDocument
+from forms.form_for_psychological_evaluation import FormForPsychologicalEvaluation
+from templates.template_compiler import TemplateCompiler
 
 app = FastAPI()
 app.mount('/upload', StaticFiles(directory='dist'), name='upload')
@@ -14,8 +14,11 @@ async def homepage():
     """Контролер домашней страницы"""
     return JSONResponse({"name": "Konstantin"})
 
+
 @app.post('/psychological_evaluation')
-async def create_psychological_evaluation_docx(form_descriptor: FormDescriptor):
+async def create_psychological_evaluation_docx(form: FormForPsychologicalEvaluation):
     """Контролер для создания психологической оценки ребенка"""
-    path_to_file = IDocument().create_psychological_evaluation_docx(form_descriptor.field)
+    path_to_template = './templates/psychological_evaluation_form.json'
+    completed_template = TemplateCompiler().compile_template(path_to_template, form)
+    path_to_file = IDocument('./dist/').create_psychological_evaluation_docx(completed_template)
     return JSONResponse({'url':  path_to_file})

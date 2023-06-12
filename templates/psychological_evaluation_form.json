@@ -1,0 +1,196 @@
+{
+	"titleBlock": {
+		"mainTitle": "Заключение",
+		"subTitle": "по результатам психологического обследования"
+	},
+	"blocks": [
+		{
+			"title": "",
+			"type": "table",
+			"rows": [
+				{
+					"translation": "Дата проведения",
+					"value": "{{date_of_verification}}"
+				},
+                {
+                    "translation": "Фамилия, имя ребёнка:",
+                    "value": "{{fio}}"
+                },
+				{
+					"translation": "Дата рождения:",
+					"value": "{{date_of_birth}}"
+				},
+				{
+					"translation": "Посещаемая группа:",
+					"value": "{{visited_group}}"
+				},
+				{
+					"translation": "Причина обследования:",
+					"value": "{{reason_for_examination}}"
+				},
+				{
+					"translation": "Характер диагностики:",
+					"value": "{{nature_of_diagnosis}}"
+				},
+				{
+					"translation": "Используемые методики и\\или диагностический комплект",
+					"value": "{{methods}}"
+				}
+			]
+		},
+		{
+			"title": "Результаты диагностики и наблюдения за ребёнком в ходе обследования",
+			"rows": [
+				{
+					"title": "Особенности эмоционально-волевой сферы и поведения ребёнка",
+					"type": "numbered_list",
+					"rows": [
+                       {
+						   "translation": "Средство коммуникации: ",
+						   "value": "{{means_of_communication}}"
+                       },
+
+						{
+							"translation": "Особенности контакта ребёнка: ",
+							"value": "{{features_of_child_contact}}"
+						},
+						{
+							"translation": "Эмоциональная реакция на ситуацию обследования: ",
+							"value": "{{emotional_reaction}}"
+						},
+						{
+							"translation": "Реакция на одобрение: ",
+							"value": "{{reaction_to_approval}}"
+						},
+						{
+							"translation": "Реакция на замечание: ",
+							"value": "{{reaction_to_remark}}"
+						},
+						{
+							"translation": "Реакция на неудачу: ",
+							"value": "{{reaction_to_failure}}"
+						},
+						{
+							"translation": "Эмоциональное состояние во время выполнения заданий: ",
+							"value": "{{emotional_state}}"
+						},
+						{
+							"translation": "Общение: ",
+							"value": "{{communication}}"
+						},
+						{
+							"translation": "Реакция на результат: ",
+							"value": "{{reaction_to_the_result}}"
+						}
+                    ]
+				},
+				{
+					"title": "Особенности деятельности во время обследования",
+					"type": "numbered_list",
+					"rows": [
+						{
+							"translation": "Наличие и стойкость интереса к заданию: ",
+							"value": "{{presence_and_persistence}}"
+						},
+						{
+							"translation": "Понимание инструкции: ",
+							"value": "{{understanding_instructions}}"
+						},
+						{
+							"translation": "Ориентировочная деятельность: ",
+							"value": "{{indicative_activity}}"
+						},
+						{
+							"translation": "Самостоятельность выполнения заданий: ",
+							"value": "{{independence_of_completing_tasks}}"
+						},
+						{
+							"translation": "Характер деятельности (целенаправленность и активность): ",
+							"value": "{{nature_of_activity}}"
+						},
+						{
+							"translation": "Темп и динамика деятельности: ",
+							"value": "{{pace_and_dynamics_of_activity}}"
+						},
+						{
+							"translation": "Работоспособность: ",
+							"value": "{{efficiency}}"
+						},
+						{
+							"translation": "Особенности регуляции деятельности: ",
+							"value": "{{features_of_regulation_of_activity}}"
+						},
+						{
+							"translation": "Организация помощи: ",
+							"value": "{{organization_of_assistance}}"
+						}
+					]
+				},
+				{
+					"title": "Особенности познавательной сферы и моторной функции рук",
+					"type": "numbered_list",
+					"rows": [
+						{
+							"translation": "Особенности внимания: ",
+							"value": "{{features_of_attention}}"
+						},
+						{
+							"translation": "Особенности восприятия: ",
+							"value": "{{features_of_perception}}"
+						},
+						{
+							"translation": "Особенности памяти: ",
+							"value": "{{memory_features}}"
+						},
+						{
+							"translation": "Особенности мышления: ",
+							"value": "{{features_of_thinking}}"
+						},
+						{
+							"translation": "Особенности речи: ",
+							"value": "{{features_of_speech}}"
+						},
+						{
+							"translation": "Особенности воображения: ",
+							"value": "{{features_of_imagination}}"
+						},
+						{
+							"translation": "Особенности моторной функции рук: ",
+							"value": "{{features_of_motor_function}}"
+						},
+						{
+							"translation": "Особенности крупной моторики: ",
+							"value": "{{features_of_large_motor_skills}}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "Выводы и рекомендации по результатам психологического обследования",
+			"type": "table",
+			"rows": [
+				{
+					"translation": "Заключение:",
+					"value": "{{conclusion}}"
+				},
+				{
+					"translation": "Прогноз",
+					"value": "{{forecast}}"
+				},
+				{
+					"translation": "Выводы о динамике: ",
+					"value": "{{conclusions_about_dynamics}}"
+				},
+				{
+					"translation": "Общие рекомендации по сопровождению ребёнка: ",
+					"value": "{{general_recommendations}}"
+				},
+				{
+					"translation": "Рекомендации родителям: ",
+					"value": "{{recommendations_to_parents}}"
+				}
+			]
+		}
+	]
+}

@@ -3,13 +3,13 @@ from pydantic import BaseModel
 
 class FormForPsychologicalEvaluation(BaseModel):
     """Описывает все поля формы для создания документа психологической оценки ребенка"""
-    date_of_verification: str | None = None
-    fio: str | None = None
-    date_of_birth: str | None = None
-    visited_group: str | None = None
-    reason_for_examination: str | None = None
-    nature_of_diagnosis: str | None = None
-    methods: str | None = None
+    date_of_verification: str
+    fio: str
+    date_of_birth: str
+    visited_group: str
+    reason_for_examination: str
+    nature_of_diagnosis: str
+    methods: str
 
     means_of_communication: str | None = None
     features_of_child_contact: str | None = None

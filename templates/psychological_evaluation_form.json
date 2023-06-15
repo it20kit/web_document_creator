@@ -6,7 +6,7 @@
 	"blocks": [
 		{
 			"title": "",
-			"type": "table",
+			"type": "table_with_two_columns_one_with_bold_test",
 			"rows": [
 				{
 					"translation": "Дата проведения",

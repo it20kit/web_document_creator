@@ -5,6 +5,8 @@ from docx import Document
 from document_factory.document_descriptor import DocumentDescriptor
 from forms.form_for_psychological_evaluation import FormForPsychologicalEvaluation
 from document_factory.tools.document_tools import DocumentTools
+from document_factory.document_block_handlers.block_creator import BlockCreatorManager
+from document_factory.document_block_handlers.heading_creator import HeadingCreator
 
 
 class PsychologicalEvaluationCreatorDocx(AbstractDocumentCreator):
@@ -17,9 +19,9 @@ class PsychologicalEvaluationCreatorDocx(AbstractDocumentCreator):
         """Создать документ психологической оценки и обернуть его в дескриптор"""
         document = Document()
         self.__set_standard_for_all_document(document)
-        self.__add_introductory_heading(document)
+        for block in form['blocks']:
+            self.__add_block(document, block)
 
-        # self.__add_introductory_table(document, data)
         # self.document_tolls.add_empty_string(document)
         # self.__add_heading_main_block(document)
         # self.__add_block_one(document, data)
@@ -30,9 +32,15 @@ class PsychologicalEvaluationCreatorDocx(AbstractDocumentCreator):
         # self.__add_table_with_signatures(document)
         return DocumentDescriptor(self.create_name_document(form), document)
 
+    @staticmethod
+    def __add_block(document: Document, block: dict):
+        block_type = block.get('type')
+        block_creator = BlockCreatorManager().get_block_creators_by_type(block_type)
+        block_creator(document, block)
+
     def create_name_document(self, form: dict) -> str:
         """Создать и вернуть имя документа"""
-        name_child = form.get('blocks')[0].get('rows')[1].get('value')
+        name_child = form.get('blocks')[2].get('content')[1].get('value')
         return name_child
 
     def save(self, document, name):

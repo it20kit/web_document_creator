@@ -1,0 +1,73 @@
+{
+	"blocks": [
+		{
+			"type": "create_custom_main_heading",
+			"content": "Заключение",
+			"style": {
+				"style_by_paragraph": {
+					"alignment": "WD_PARAGRAPH_ALIGNMENT.CENTER"
+				},
+				"style_by_text": {
+					"text_size": 20,
+					"are_bold": true
+				}
+			}
+		},
+		{
+			"type": "create_custom_main_heading",
+			"content": "по результатам психологического обследования",
+			"style": {
+				"style_by_paragraph": {
+					"alignment": "WD_PARAGRAPH_ALIGNMENT.CENTER"
+				},
+				"style_by_text": {
+					"text_size": 14,
+					"are_bold": true
+				}
+			}
+		},
+		{
+			"type": "create_table_two_columns",
+			"style": {
+				"style_for_first_column": {
+					"text_size": 12,
+					"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT"
+				},
+				"style_for_second_column": {
+					"text_size": 12,
+					"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT"
+				}
+			},
+			"content": [
+				{
+					"translation": "Дата проведения",
+					"value": "{{date_of_verification}}"
+				},
+                {
+                    "translation": "Фамилия, имя ребёнка:",
+                    "value": "{{fio}}"
+                },
+				{
+					"translation": "Дата рождения:",
+					"value": "{{date_of_birth}}"
+				},
+				{
+					"translation": "Посещаемая группа:",
+					"value": "{{visited_group}}"
+				},
+				{
+					"translation": "Причина обследования:",
+					"value": "{{reason_for_examination}}"
+				},
+				{
+					"translation": "Характер диагностики:",
+					"value": "{{nature_of_diagnosis}}"
+				},
+				{
+					"translation": "Используемые методики и\\или диагностический комплект",
+					"value": "{{methods}}"
+				}
+			]
+		}
+	]
+}

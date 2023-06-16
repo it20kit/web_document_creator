@@ -5,7 +5,7 @@ from docx import Document
 from document_factory.document_descriptor import DocumentDescriptor
 from forms.form_for_psychological_evaluation import FormForPsychologicalEvaluation
 from document_factory.tools.document_tools import DocumentTools
-from document_factory.document_block_handlers.block_creator import BlockCreatorManager
+from document_factory.document_block_handlers.block_handler_manager import BlockHandlerManager
 from document_factory.document_block_handlers.heading_creator import HeadingCreator
 
 
@@ -22,8 +22,6 @@ class PsychologicalEvaluationCreatorDocx(AbstractDocumentCreator):
         for block in form['blocks']:
             self.__add_block(document, block)
 
-        # self.document_tolls.add_empty_string(document)
-        # self.__add_heading_main_block(document)
         # self.__add_block_one(document, data)
         # self.__add_block_two(document, data)
         # self.__add_block_thee(document, data)
@@ -35,135 +33,21 @@ class PsychologicalEvaluationCreatorDocx(AbstractDocumentCreator):
     @staticmethod
     def __add_block(document: Document, block: dict):
         block_type = block.get('type')
-        block_creator = BlockCreatorManager().get_block_creators_by_type(block_type)
+        block_creator = BlockHandlerManager().get_block_creators_by_type(block_type)
         block_creator(document, block)
 
     def create_name_document(self, form: dict) -> str:
         """Создать и вернуть имя документа"""
-        name_child = form.get('blocks')[2].get('content')[1].get('value')
+        name_child = form.get('document_name')
         return name_child
 
     def save(self, document, name):
         """Сохранить документ"""
         document.save(name)
 
-    def __add_introductory_heading(self, document: Document) -> None:
-        """Создать и добавить главный заголовок"""
-        font_size_by_big_heading = 20
-        bold = True
-        big_heading = document.add_paragraph("")
-        big_heading.paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
-        text_big_heading = big_heading.add_run("Заключение")
-        self.document_tolls.set_text_style_by_parameters(text_big_heading, font_size_by_big_heading, bold=bold)
-
-        font_size_by_middle_heading = 14
-        middle_heading = document.add_paragraph("")
-        text_middle_heading = middle_heading.add_run("по результатам психологического обследования")
-        middle_heading.paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
-        self.document_tolls.set_text_style_by_parameters(text_middle_heading, font_size_by_middle_heading, bold=bold)
-
-    def __add_introductory_table(self, document: Document, data: FormForPsychologicalEvaluation) -> None:
-        """Создать и добавить таблицу с вводными данными"""
-        rows = 7
-        cols = 2
-        table = self.document_tolls.create_table_by_parameters(document, rows, cols)
-        table.columns[0].width = Cm(6)
-        table.columns[1].width = Cm(12)
-        self.__add_data_in_introductory_table(table, data)
-
-    def __add_data_in_introductory_table(self, table, data: FormForPsychologicalEvaluation) -> None:
-        """Набить данными вводную таблицу"""
-        cell = table.cell(0, 0)
-        text = "Дата проведения:"
-        text_size = 12
-        self.document_tolls.add_content_for_cell_table(cell, text, text_size, WD_PARAGRAPH_ALIGNMENT.LEFT)
-        data_of_verification = data.date_of_verification
-        if data_of_verification is not None:
-            cell = table.cell(0, 1)
-            text = data_of_verification
-            self.document_tolls.add_content_for_cell_table(cell, text, text_size, WD_PARAGRAPH_ALIGNMENT.LEFT)
-
-        cell = table.cell(1, 0)
-        text = "Фамилия, имя ребёнка:"
-        text_size = 12
-        self.document_tolls.add_content_for_cell_table(cell, text, text_size, WD_PARAGRAPH_ALIGNMENT.LEFT)
-        fio = data.fio
-        if fio is not None:
-            cell = table.cell(1, 1)
-            text = fio
-            self.document_tolls.add_content_for_cell_table(cell, text, text_size, WD_PARAGRAPH_ALIGNMENT.LEFT)
-
-        cell = table.cell(2, 0)
-        text = "Дата рождения:"
-        text_size = 12
-        self.document_tolls.add_content_for_cell_table(cell, text, text_size, WD_PARAGRAPH_ALIGNMENT.LEFT)
-        date_of_birth = data.date_of_birth
-        if date_of_birth is not None:
-            cell = table.cell(2, 1)
-            text = date_of_birth
-            self.document_tolls.add_content_for_cell_table(cell, text, text_size, WD_PARAGRAPH_ALIGNMENT.LEFT)
-
-        cell = table.cell(3, 0)
-        text = "Посещаемая группа:"
-        text_size = 12
-        self.document_tolls.add_content_for_cell_table(cell, text, text_size, WD_PARAGRAPH_ALIGNMENT.LEFT)
-        visited_group = data.visited_group
-        if visited_group is not None:
-            cell = table.cell(3, 1)
-            text = visited_group
-            self.document_tolls.add_content_for_cell_table(cell, text, text_size, WD_PARAGRAPH_ALIGNMENT.LEFT)
-
-        cell = table.cell(4, 0)
-        text = "Причина обследования:"
-        text_size = 12
-        self.document_tolls.add_content_for_cell_table(cell, text, text_size, WD_PARAGRAPH_ALIGNMENT.LEFT)
-        reason_for_examination = data.reason_for_examination
-        if reason_for_examination is not None:
-            cell = table.cell(4, 1)
-            text = reason_for_examination
-            self.document_tolls.add_content_for_cell_table(cell, text, text_size, WD_PARAGRAPH_ALIGNMENT.LEFT)
-
-        cell = table.cell(5, 0)
-        text = "Характер диагностики:"
-        text_size = 12
-        self.document_tolls.add_content_for_cell_table(cell, text, text_size, WD_PARAGRAPH_ALIGNMENT.LEFT)
-        nature_of_diagnosis = data.nature_of_diagnosis
-        if nature_of_diagnosis is not None:
-            cell = table.cell(5, 1)
-            text = nature_of_diagnosis
-            self.document_tolls.add_content_for_cell_table(cell, text, text_size, WD_PARAGRAPH_ALIGNMENT.LEFT)
-
-        cell = table.cell(6, 0)
-        text = "Используемые методики и\\или диагностический комплект"
-        text_size = 12
-        self.document_tolls.add_content_for_cell_table(cell, text, text_size, WD_PARAGRAPH_ALIGNMENT.LEFT)
-        methods = data.methods
-        if methods is not None:
-            cell = table.cell(6, 1)
-            text = methods
-            self.document_tolls.add_content_for_cell_table(cell, text, text_size, WD_PARAGRAPH_ALIGNMENT.LEFT)
-
-    def __add_heading_main_block(self, document: Document) -> None:
-        """Создать и добавить заголовок в главный блок документа"""
-        font_size_by_middle_heading = 14
-        bold = True
-
-        heading = document.add_paragraph("")
-        heading.paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
-        text_heading = heading.add_run("Результаты диагностики и наблюдения за ребёнком в ходе обследования")
-        self.document_tolls.set_text_style_by_parameters(text_heading, font_size_by_middle_heading, bold=bold)
-
     def __add_block_one(self, document, data: FormForPsychologicalEvaluation) -> None:
         """Создать и добавить первый блок с контентом в документ"""
-        self.__create_heading_for_block_one(document)
         self.__create_block_one(document, data)
-
-    def __create_heading_for_block_one(self, document: Document) -> None:
-        """Создать заголовок первого блока"""
-        heading = document.add_paragraph("", style="List Number")
-        text = heading.add_run("Особенности эмоционально-волевой сферы и поведения ребёнка")
-        font_size = 12
-        self.document_tolls.set_text_style_by_parameters(text, font_size, bold=True)
 
     def __create_block_one(self, document: Document, data: FormForPsychologicalEvaluation) -> None:
         """Создать первый блок с контентом"""

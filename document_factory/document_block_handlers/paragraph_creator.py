@@ -17,6 +17,10 @@ class ParagraphCreator:
         return document.add_paragraph("")
 
     @staticmethod
+    def create_numbered_list_paragraph(document: Document):
+        return document.add_paragraph("", style="List Number")
+
+    @staticmethod
     def set_style_for_paragraph(paragraph, style: dict = None):
         """Установить стиль для абзаца"""
         if style is not None:

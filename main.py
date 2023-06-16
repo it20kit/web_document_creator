@@ -18,7 +18,7 @@ async def homepage():
 @app.post('/psychological_evaluation')
 async def create_psychological_evaluation_docx(form: FormForPsychologicalEvaluation):
     """Контролер для создания психологической оценки ребенка"""
-    path_to_template = './templates/test.json'
+    path_to_template = 'templates/psychological_evaluation_form.json'
     completed_template = TemplateCompiler().compile_template(path_to_template, form)
     path_to_file = IDocument('./dist/').create_psychological_evaluation_docx(completed_template)
     return JSONResponse({'url':  path_to_file})

@@ -1,13 +1,58 @@
 {
-	"titleBlock": {
-		"mainTitle": "Заключение",
-		"subTitle": "по результатам психологического обследования"
-	},
+	"document_name": "{{fio}}",
 	"blocks": [
 		{
-			"title": "",
-			"type": "table_with_two_columns_one_with_bold_test",
-			"rows": [
+			"type": "create_regular_heading",
+			"content": "Заключение",
+			"parameters": {
+				"style": {
+					"style_by_paragraph": {
+						"alignment": "WD_PARAGRAPH_ALIGNMENT.CENTER"
+					},
+					"style_by_text": {
+						"text_size": 20,
+						"are_bold": true
+					}
+				}
+			}
+		},
+		{
+			"type": "create_regular_heading",
+			"content": "по результатам психологического обследования",
+			"parameters": {
+				"style": {
+					"style_by_paragraph": {
+						"alignment": "WD_PARAGRAPH_ALIGNMENT.CENTER"
+					},
+					"style_by_text": {
+						"text_size": 14,
+						"are_bold": true
+					}
+				}
+			}
+		},
+		{
+			"type": "create_table_two_columns",
+			"parameters": {
+				"style": {
+					"style_for_first_column": {
+						"text_size": 12,
+						"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT"
+					},
+					"style_for_second_column": {
+						"text_size": 12,
+						"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT"
+					}
+				},
+				"table_size": {
+					"number_of_rows_and_columns": {
+						"rows": 7,
+						"columns": 2
+					},
+					"size_columns": [6, 12]
+				}
+			},
+			"content": [
 				{
 					"translation": "Дата проведения",
 					"value": "{{date_of_verification}}"
@@ -39,158 +84,295 @@
 			]
 		},
 		{
-			"title": "Результаты диагностики и наблюдения за ребёнком в ходе обследования",
-			"rows": [
+			"type": "empty_string"
+		},
+		{
+			"type": "create_regular_heading",
+			"content": "Результаты диагностики и наблюдения за ребёнком в ходе обследования",
+			"parameters": {
+				"style": {
+					"style_by_paragraph": {
+						"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT"
+					},
+					"style_by_text": {
+						"text_size": 14,
+						"are_bold": true
+					}
+				}
+			}
+		},
+		{
+			"type": "create_numbered_list_heading",
+			"content": "Особенности эмоционально-волевой сферы и поведения ребёнка",
+			"parameters": {
+				"style": {
+					"style_by_paragraph": {
+						"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT"
+					},
+					"style_by_text": {
+						"text_size": 12,
+						"are_bold": true
+					}
+				}
+			}
+		},
+		{
+			"type": "create_custom_paragraph",
+			"parameters": {
+				"style": {
+					"style_by_first_text": {
+						"text_size": 12,
+						"are_underline": true
+					},
+					"style_by_second_text": {
+						"text_size": 12
+					},
+					"style_by_paragraph": {
+						"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT",
+						"indent": 0.1
+					}
+				}
+			},
+			"content": [
 				{
-					"title": "Особенности эмоционально-волевой сферы и поведения ребёнка",
-					"type": "numbered_list",
-					"rows": [
-                       {
-						   "translation": "Средство коммуникации: ",
-						   "value": "{{means_of_communication}}"
-                       },
+				   "translation": "Средство коммуникации: ",
+				   "value": "{{means_of_communication}}"
+			   },
 
-						{
-							"translation": "Особенности контакта ребёнка: ",
-							"value": "{{features_of_child_contact}}"
-						},
-						{
-							"translation": "Эмоциональная реакция на ситуацию обследования: ",
-							"value": "{{emotional_reaction}}"
-						},
-						{
-							"translation": "Реакция на одобрение: ",
-							"value": "{{reaction_to_approval}}"
-						},
-						{
-							"translation": "Реакция на замечание: ",
-							"value": "{{reaction_to_remark}}"
-						},
-						{
-							"translation": "Реакция на неудачу: ",
-							"value": "{{reaction_to_failure}}"
-						},
-						{
-							"translation": "Эмоциональное состояние во время выполнения заданий: ",
-							"value": "{{emotional_state}}"
-						},
-						{
-							"translation": "Общение: ",
-							"value": "{{communication}}"
-						},
-						{
-							"translation": "Реакция на результат: ",
-							"value": "{{reaction_to_the_result}}"
-						}
-                    ]
+				{
+					"translation": "Особенности контакта ребёнка: ",
+					"value": "{{features_of_child_contact}}"
 				},
 				{
-					"title": "Особенности деятельности во время обследования",
-					"type": "numbered_list",
-					"rows": [
-						{
-							"translation": "Наличие и стойкость интереса к заданию: ",
-							"value": "{{presence_and_persistence}}"
-						},
-						{
-							"translation": "Понимание инструкции: ",
-							"value": "{{understanding_instructions}}"
-						},
-						{
-							"translation": "Ориентировочная деятельность: ",
-							"value": "{{indicative_activity}}"
-						},
-						{
-							"translation": "Самостоятельность выполнения заданий: ",
-							"value": "{{independence_of_completing_tasks}}"
-						},
-						{
-							"translation": "Характер деятельности (целенаправленность и активность): ",
-							"value": "{{nature_of_activity}}"
-						},
-						{
-							"translation": "Темп и динамика деятельности: ",
-							"value": "{{pace_and_dynamics_of_activity}}"
-						},
-						{
-							"translation": "Работоспособность: ",
-							"value": "{{efficiency}}"
-						},
-						{
-							"translation": "Особенности регуляции деятельности: ",
-							"value": "{{features_of_regulation_of_activity}}"
-						},
-						{
-							"translation": "Организация помощи: ",
-							"value": "{{organization_of_assistance}}"
-						}
-					]
+					"translation": "Эмоциональная реакция на ситуацию обследования: ",
+					"value": "{{emotional_reaction}}"
 				},
 				{
-					"title": "Особенности познавательной сферы и моторной функции рук",
-					"type": "numbered_list",
-					"rows": [
-						{
-							"translation": "Особенности внимания: ",
-							"value": "{{features_of_attention}}"
-						},
-						{
-							"translation": "Особенности восприятия: ",
-							"value": "{{features_of_perception}}"
-						},
-						{
-							"translation": "Особенности памяти: ",
-							"value": "{{memory_features}}"
-						},
-						{
-							"translation": "Особенности мышления: ",
-							"value": "{{features_of_thinking}}"
-						},
-						{
-							"translation": "Особенности речи: ",
-							"value": "{{features_of_speech}}"
-						},
-						{
-							"translation": "Особенности воображения: ",
-							"value": "{{features_of_imagination}}"
-						},
-						{
-							"translation": "Особенности моторной функции рук: ",
-							"value": "{{features_of_motor_function}}"
-						},
-						{
-							"translation": "Особенности крупной моторики: ",
-							"value": "{{features_of_large_motor_skills}}"
-						}
-					]
+					"translation": "Реакция на одобрение: ",
+					"value": "{{reaction_to_approval}}"
+				},
+				{
+					"translation": "Реакция на замечание: ",
+					"value": "{{reaction_to_remark}}"
+				},
+				{
+					"translation": "Реакция на неудачу: ",
+					"value": "{{reaction_to_failure}}"
+				},
+				{
+					"translation": "Эмоциональное состояние во время выполнения заданий: ",
+					"value": "{{emotional_state}}"
+				},
+				{
+					"translation": "Общение: ",
+					"value": "{{communication}}"
+				},
+				{
+					"translation": "Реакция на результат: ",
+					"value": "{{reaction_to_the_result}}"
 				}
 			]
 		},
 		{
-			"title": "Выводы и рекомендации по результатам психологического обследования",
-			"type": "table",
-			"rows": [
+			"type": "create_numbered_list_heading",
+			"content": "Особенности деятельности во время обследования",
+			"parameters": {
+				"style": {
+					"style_by_paragraph": {
+						"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT"
+					},
+					"style_by_text": {
+						"text_size": 12,
+						"are_bold": true
+					}
+				}
+			}
+		},
+		{
+			"type": "create_custom_paragraph",
+			"parameters": {
+				"style": {
+					"style_by_first_text": {
+						"text_size": 12,
+						"are_underline": true
+					},
+					"style_by_second_text": {
+						"text_size": 12
+					},
+					"style_by_paragraph": {
+						"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT",
+						"indent": 0.1
+					}
+				}
+			},
+			"content": [
+				{
+					"translation": "Наличие и стойкость интереса к заданию: ",
+					"value": "{{presence_and_persistence}}"
+				},
+				{
+					"translation": "Понимание инструкции: ",
+					"value": "{{understanding_instructions}}"
+				},
+				{
+					"translation": "Ориентировочная деятельность: ",
+					"value": "{{indicative_activity}}"
+				},
+				{
+					"translation": "Самостоятельность выполнения заданий: ",
+					"value": "{{independence_of_completing_tasks}}"
+				},
+				{
+					"translation": "Характер деятельности (целенаправленность и активность): ",
+					"value": "{{nature_of_activity}}"
+				},
+				{
+					"translation": "Темп и динамика деятельности: ",
+					"value": "{{pace_and_dynamics_of_activity}}"
+				},
+				{
+					"translation": "Работоспособность: ",
+					"value": "{{efficiency}}"
+				},
+				{
+					"translation": "Особенности регуляции деятельности: ",
+					"value": "{{features_of_regulation_of_activity}}"
+				},
+				{
+					"translation": "Организация помощи: ",
+					"value": "{{organization_of_assistance}}"
+				}
+			]
+		},
+		{
+			"type": "create_numbered_list_heading",
+			"parameters": {
+				"style": {
+					"style_by_paragraph": {
+						"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT"
+					},
+					"style_by_text": {
+						"text_size": 12,
+						"are_bold": true
+					}
+				}
+			},
+			"content": "Особенности познавательной сферы и моторной функции рук"
+		},
+		{
+			"type": "create_custom_paragraph",
+			"parameters": {
+				"style": {
+					"style_by_first_text": {
+						"text_size": 12,
+						"are_underline": true
+					},
+					"style_by_second_text": {
+						"text_size": 12
+					},
+					"style_by_paragraph": {
+						"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT",
+						"indent": 0.1
+					}
+				}
+			},
+			"content": [
+				{
+					"translation": "Особенности внимания: ",
+					"value": "{{features_of_attention}}"
+				},
+				{
+					"translation": "Особенности восприятия: ",
+					"value": "{{features_of_perception}}"
+				},
+				{
+					"translation": "Особенности памяти: ",
+					"value": "{{memory_features}}"
+				},
+				{
+					"translation": "Особенности мышления: ",
+					"value": "{{features_of_thinking}}"
+				},
+				{
+					"translation": "Особенности речи: ",
+					"value": "{{features_of_speech}}"
+				},
+				{
+					"translation": "Особенности воображения: ",
+					"value": "{{features_of_imagination}}"
+				},
+				{
+					"translation": "Особенности моторной функции рук: ",
+					"value": "{{features_of_motor_function}}"
+				},
+				{
+					"translation": "Особенности крупной моторики: ",
+					"value": "{{features_of_large_motor_skills}}"
+				}
+			]
+		},
+		{
+			"type": "create_regular_heading",
+			"content": "Выводы и рекомендации по результатам психологического обследования",
+			"parameters": {
+				"style": {
+					"style_by_paragraph": {
+						"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT"
+					},
+					"style_by_text": {
+						"text_size": 14,
+						"are_bold": true
+					}
+				}
+			}
+		},
+		{
+			"type": "create_table_two_columns",
+			"parameters": {
+				"style": {
+					"style_for_first_column": {
+						"text_size": 12,
+						"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT",
+						"are_bold": true
+					},
+					"style_for_second_column": {
+						"text_size": 12,
+						"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT"
+					}
+				},
+				"table_size": {
+					"number_of_rows_and_columns": {
+						"rows": 5,
+						"columns": 2
+					},
+					"size_columns": [6, 12]
+				}
+			},
+			"content": [
 				{
 					"translation": "Заключение:",
 					"value": "{{conclusion}}"
 				},
 				{
-					"translation": "Прогноз",
+					"translation": "Прогноз:",
 					"value": "{{forecast}}"
 				},
 				{
-					"translation": "Выводы о динамике: ",
+					"translation": "Выводы о динамике:",
 					"value": "{{conclusions_about_dynamics}}"
 				},
 				{
-					"translation": "Общие рекомендации по сопровождению ребёнка: ",
+					"translation": "Общие рекомендации по сопровождению ребёнка:",
 					"value": "{{general_recommendations}}"
 				},
 				{
-					"translation": "Рекомендации родителям: ",
+					"translation": "Рекомендации родителям:",
 					"value": "{{recommendations_to_parents}}"
 				}
 			]
+		},
+		{
+			"type": "empty_string"
 		}
 	]
 }

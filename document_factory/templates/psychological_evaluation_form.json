@@ -1,5 +1,17 @@
 {
 	"document_name": "{{fio}}",
+	"standard_margins_and_styles_for_the_entire_document": {
+		"margins_sizes": {
+			"bottom": 15,
+			"top": 15,
+			"right": 10,
+			"left": 20
+		},
+		"style": {
+			"text_size": 12,
+			"font_name": "Times New Roman"
+		}
+	},
 	"blocks": [
 		{
 			"type": "create_regular_heading",

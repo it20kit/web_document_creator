@@ -1,5 +1,5 @@
-from document_factory.document_block_handlers.text_creator import TextCreator
-from document_factory.document_block_handlers.paragraph_creator import ParagraphCreator
+from document_factory.document_block_handlers.tools.text_style_tool import TextTool
+from document_factory.document_block_handlers.tools.paragraph_tool import ParagraphTool
 from docx.shared import *
 
 
@@ -45,8 +45,8 @@ class TableCreator:
     def __add_content_for_cell_table(cell, content, style: dict) -> None:
         """Добавить текст в ячейку таблицы с переданными параметрами"""
         text = cell.paragraphs[0].add_run(content)
-        ParagraphCreator().set_style_for_paragraph(cell.paragraphs[0], style)
-        TextCreator().set_text_style_by_parameters(text, style)
+        ParagraphTool().set_style_for_paragraph(cell.paragraphs[0], style)
+        TextTool().set_text_style_by_parameters(text, style)
 
     @staticmethod
     def set_size_of_table(table, sizes: list):

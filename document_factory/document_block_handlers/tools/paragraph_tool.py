@@ -3,7 +3,7 @@ from docx.shared import *
 from docx.enum.text import *
 
 
-class ParagraphCreator:
+class ParagraphTool:
     """Умеет создавать параграфы для документа со стилями"""
     alignment: dict = {
         "WD_PARAGRAPH_ALIGNMENT.CENTER": WD_PARAGRAPH_ALIGNMENT.CENTER,
@@ -26,7 +26,7 @@ class ParagraphCreator:
         if style is not None:
             alignment = style.get('alignment')
             if alignment is not None:
-                alignment = ParagraphCreator.alignment[alignment]
+                alignment = ParagraphTool.alignment[alignment]
                 paragraph.paragraph_format.alignment = alignment
             indent = style.get('indent')
             if indent is not None:

@@ -7,16 +7,11 @@ class AbstractDocumentCreator(ABC):
     """Задаёт абстракцию для всех наследуемых creatorDocx"""
 
     @abstractmethod
-    def create_document(self, data: dict) -> DocumentDescriptor:
+    def create_document(self, data: dict) -> Document():
         """Создать документ"""
         pass
 
     @abstractmethod
-    def create_name_document(self, data: dict) -> str:
-        """Создать имя документа"""
-        pass
-
-    @abstractmethod
-    def save(self, document: Document, name: str) -> None:
-        """Сохранить документ"""
+    def add_block(self, document: Document, block: dict):
+        """Добавляет блоки с контентом в документ"""
         pass

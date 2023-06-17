@@ -1,5 +1,5 @@
-from document_factory.document_block_handlers.paragraph_creator import ParagraphCreator
-from document_factory.document_block_handlers.text_creator import TextCreator
+from document_factory.document_block_handlers.tools.paragraph_tool import ParagraphTool
+from document_factory.document_block_handlers.tools.text_style_tool import TextTool
 from docx import Document
 
 
@@ -12,8 +12,8 @@ class HeadingCreator:
     ):
         """Создать заголовок по переданным параметрам"""
         text = heading.add_run(text)
-        ParagraphCreator.set_style_for_paragraph(heading, style_paragraph)
-        TextCreator.set_text_style_by_parameters(text, style_text)
+        ParagraphTool.set_style_for_paragraph(heading, style_paragraph)
+        TextTool.set_text_style_by_parameters(text, style_text)
 
     def create_custom_main_heading(self, heading, data: dict) -> None:
         """Создает главный заголовок для документа(заголовок в самом начале документа)"""
@@ -24,12 +24,12 @@ class HeadingCreator:
 
     @staticmethod
     def create_empty_heading(document: Document) -> None:
-        ParagraphCreator.create_empty_paragraph(document)
+        ParagraphTool.create_empty_paragraph(document)
 
-    def create_numbered_list_heading(self, document: Document, data: dict):
-        heading = ParagraphCreator.create_numbered_list_paragraph(document)
+    def create_numbered_list_heading(self, document: Document, data: dict) -> None:
+        heading = ParagraphTool.create_numbered_list_paragraph(document)
         self.create_custom_main_heading(heading, data)
 
-    def create_regular_heading(self, document: Document, data: dict):
-        heading = ParagraphCreator.create_empty_paragraph(document)
+    def create_regular_heading(self, document: Document, data: dict) -> None:
+        heading = ParagraphTool.create_empty_paragraph(document)
         self.create_custom_main_heading(heading, data)

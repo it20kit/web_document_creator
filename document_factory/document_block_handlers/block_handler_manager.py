@@ -1,8 +1,8 @@
-from document_factory.document_block_handlers.table_creator import TableCreator
+from document_factory.document_block_handlers.blocks_handlers.block_table_creator import TableCreator
 from docx import Document
-from document_factory.document_block_handlers.heading_creator import HeadingCreator
-from document_factory.document_block_handlers.block_paragraph_creator import BlockParagraphCreator
-
+from document_factory.document_block_handlers.blocks_handlers.block_heading_creator import HeadingCreator
+from document_factory.document_block_handlers.blocks_handlers.block_paragraph_creator import BlockParagraphCreator
+import re
 
 class BlockHandlerManager:
     """Знает как создавать по переданному типу"""

@@ -1,20 +1,25 @@
 import datetime
 from langdetect import detect
 from transliterate import translit
+import string
+import random
 
 
 class DocumentNameFactory:
     """Умеет создавать имена для документов"""
 
-    def __init__(self, expansion):
-        self.expansion = expansion
-        self.unwanted_symbol = ('ь', 'ъ', '\'', '/', '\\')
+    def __init__(self):
+        self.unwanted_symbol = ('ь', 'ъ', '\'', '/', '\\', '{', '}', '[', ']')
 
-    def create_name_for_document(self, name: str) -> str:
+    def create_name_for_document(self, data: dict) -> str:
         """Создать имя документа"""
+        length = 10
+        name = data.get('document_name')
+        if name is None or name == "":
+            name = self.generate_document_name(length)
         today_data = str(datetime.date.today())
         valid_name = self.validate_name(name)
-        return valid_name + '_' + today_data + self.expansion
+        return valid_name + '_' + today_data
 
     def validate_name(self, name: str) -> str:
         """Валидировать имя, убрать нежелательные символы ь и ъ """
@@ -29,3 +34,8 @@ class DocumentNameFactory:
 
         valid_name = valid_name.replace(' ', '_')
         return valid_name
+
+    @staticmethod
+    def generate_document_name(length: int):
+        letters = string.ascii_lowercase
+        return ''.join(random.choice(letters) for i in range(length))

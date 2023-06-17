@@ -11,7 +11,8 @@ class TemplateCompiler:
             json_str = file.read()
             for key, value in form.items():
                 pattern = "{{" + key + "}}"
-                json_str = re.sub(pattern, value, json_str)
+                if value is not None:
+                    json_str = re.sub(pattern, value, json_str)
             compiled_template = json.loads(json_str)
 
             return compiled_template
@@ -19,3 +20,8 @@ class TemplateCompiler:
     @staticmethod
     def make_dictionary_out_of_form(form: object):
         return vars(form)
+
+    def test(self, form):
+        for key, value in form.items():
+            print(type(value))
+

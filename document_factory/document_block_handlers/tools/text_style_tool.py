@@ -2,7 +2,7 @@ from docx.enum.text import *
 from docx.shared import *
 
 
-class TextCreator:
+class TextTool:
     """Умеет создавать тест для со стилями для параграфов и таблиц и заголовков"""
 
     @staticmethod
@@ -21,3 +21,6 @@ class TextCreator:
             are_underline = style.get('are_underline')
             if are_underline is not None:
                 text.font.underline = WD_UNDERLINE.SINGLE
+            font_name = style.get('font_name')
+            if font_name is not None:
+                text.font.name = font_name

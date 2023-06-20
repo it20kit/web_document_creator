@@ -1,9 +1,11 @@
 from document_factory.document_block_handlers.tools.text_style_tool import TextTool
 from document_factory.document_block_handlers.tools.paragraph_tool import ParagraphTool
 from docx.shared import *
+from document_factory.document_block_handlers.blocks_handlers.abstract_block_creator import AbstractBlockCreator
+from docx import Document
 
 
-class TableCreator:
+class TableCreator(AbstractBlockCreator):
     """Умеет создавать различные таблицы"""
 
     @staticmethod
@@ -14,32 +16,32 @@ class TableCreator:
         table.width = 1
         return table
 
-    def create_table_with_two_columns_by_text_style(
-            self, table, data: list, style_one: dict = None, style_two: dict = None
-    ):
-        for i in range(len(data)):
-            translation = data[i].get('translation')
-            value = data[i].get('value')
-            cell = table.cell(i, 0)
-            self.__add_content_for_cell_table(cell, translation, style_one)
-            if value is not None:
-                cell = table.cell(i, 1)
-                self.__add_content_for_cell_table(cell, value, style_two)
-        return table
+    # def create_table_with_two_columns_by_text_style(
+    #         self, table, data: list, style_one: dict = None, style_two: dict = None
+    # ):
+    #     for i in range(len(data)):
+    #         translation = data[i].get('translation')
+    #         value = data[i].get('value')
+    #         cell = table.cell(i, 0)
+    #         self.__add_content_for_cell_table(cell, translation, style_one)
+    #         if value is not None:
+    #             cell = table.cell(i, 1)
+    #             self.__add_content_for_cell_table(cell, value, style_two)
+    #     return table
 
-    def create_table_two_columns(self, document, data: dict):
-        style_for_first_column = data.get('parameters').get('style').get('style_for_first_column')
-        style_for_second_column = data.get('parameters').get('style').get('style_for_second_column')
-        rows = data.get('parameters').get('table_size').get('number_of_rows_and_columns').get('rows')
-        table = self.create_table_with_two_columns_by_text_style(
-            self.create_empty_table_by_parameters(document, rows=rows, cols=2),
-            data.get('content'),
-            style_for_first_column,
-            style_for_second_column
-        )
-        size_by_table = data.get('parameters').get('table_size').get('size_columns')
-        if size_by_table is not None:
-            self.set_size_of_table(table, size_by_table)
+    # def create_table_two_columns(self, document, data: dict):
+    #     style_for_first_column = data.get('parameters').get('style').get('style_for_first_column')
+    #     style_for_second_column = data.get('parameters').get('style').get('style_for_second_column')
+    #     rows = data.get('parameters').get('table_size').get('number_of_rows_and_columns').get('rows')
+    #     table = self.create_table_with_two_columns_by_text_style(
+    #         self.create_empty_table_by_parameters(document, rows=rows, cols=2),
+    #         data.get('content'),
+    #         style_for_first_column,
+    #         style_for_second_column
+    #     )
+    #     size_by_table = data.get('parameters').get('table_size').get('size_columns')
+    #     if size_by_table is not None:
+    #         self.set_size_of_table(table, size_by_table)
 
     @staticmethod
     def __add_content_for_cell_table(cell, content, style: dict) -> None:
@@ -52,3 +54,21 @@ class TableCreator:
     def set_size_of_table(table, sizes: list):
         for i in range(len(sizes)):
             table.columns[i].width = Cm(sizes[i])
+
+    def create_block(self, document: Document, data: dict) -> None:
+        content = data.get('content')
+        rows = self.count_number_of_rows(content)
+        cols = self.count_number_of_cols(content)
+        table = self.create_empty_table_by_parameters(document, rows, cols)
+
+
+    @staticmethod
+    def count_number_of_rows(content: list):
+        return len(content[0])
+
+    def count_number_of_cols(self, content: list):
+        counter = 0
+        for i in range(len(content)):
+            if self.are_there_empty_values_in_content(content[i]):
+                counter = counter + 1
+        return counter

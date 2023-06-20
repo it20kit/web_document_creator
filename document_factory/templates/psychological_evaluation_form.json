@@ -14,9 +14,10 @@
 	},
 	"blocks": [
 		{
-			"type": "create_regular_heading",
+			"type_of_block_handler": "HeadingCreator",
 			"content": "Заключение",
 			"parameters": {
+				"type_block": "regular heading",
 				"style": {
 					"style_by_paragraph": {
 						"alignment": "WD_PARAGRAPH_ALIGNMENT.CENTER"
@@ -29,9 +30,10 @@
 			}
 		},
 		{
-			"type": "create_regular_heading",
+			"type_of_block_handler": "HeadingCreator",
 			"content": "по результатам психологического обследования",
 			"parameters": {
+				"type_block": "regular heading",
 				"style": {
 					"style_by_paragraph": {
 						"alignment": "WD_PARAGRAPH_ALIGNMENT.CENTER"
@@ -44,17 +46,19 @@
 			}
 		},
 		{
-			"type": "create_table_two_columns",
+			"type_of_block_handler": "TableCreator",
 			"parameters": {
 				"style": {
-					"style_for_first_column": {
-						"text_size": 12,
-						"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT"
-					},
-					"style_for_second_column": {
-						"text_size": 12,
-						"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT"
-					}
+					"style_by_content": [
+						{
+							"text_size": 12,
+							"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT"
+						},
+						{
+							"text_size": 12,
+							"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT"
+						}
+					]
 				},
 				"table_size": {
 					"number_of_rows_and_columns": {
@@ -65,43 +69,44 @@
 				}
 			},
 			"content": [
-				{
-					"translation": "Дата проведения",
-					"value": "{{date_of_verification}}"
-				},
-                {
-                    "translation": "Фамилия, имя ребёнка:",
-                    "value": "{{fio}}"
-                },
-				{
-					"translation": "Дата рождения:",
-					"value": "{{date_of_birth}}"
-				},
-				{
-					"translation": "Посещаемая группа:",
-					"value": "{{visited_group}}"
-				},
-				{
-					"translation": "Причина обследования:",
-					"value": "{{reason_for_examination}}"
-				},
-				{
-					"translation": "Характер диагностики:",
-					"value": "{{nature_of_diagnosis}}"
-				},
-				{
-					"translation": "Используемые методики и\\или диагностический комплект",
-					"value": "{{methods}}"
-				}
+				[
+					"Дата проведения",
+					"{{date_of_verification}}"
+				],
+				[
+					"Фамилия, имя ребёнка:",
+					"{{fio}}"
+				],
+				[
+					"Дата рождения:",
+					"{{date_of_birth}}"
+				],
+				[
+					"Посещаемая группа:",
+					"{{visited_group}}"
+				],
+				[
+					"Причина обследования:",
+					"{{reason_for_examination}}"
+				],
+				[
+					"Характер диагностики:",
+					"{{nature_of_diagnosis}}"
+				],
+				[
+					"Используемые методики и\\или диагностический комплект",
+					"{{methods}}"
+				]
 			]
 		},
 		{
-			"type": "empty_string"
+			"type_of_block_handler": "empty_string"
 		},
 		{
-			"type": "create_regular_heading",
+			"type_of_block_handler": "HeadingCreator",
 			"content": "Результаты диагностики и наблюдения за ребёнком в ходе обследования",
 			"parameters": {
+				"type_block": "regular heading",
 				"style": {
 					"style_by_paragraph": {
 						"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT"
@@ -114,9 +119,10 @@
 			}
 		},
 		{
-			"type": "create_numbered_list_heading",
+			"type_of_block_handler": "HeadingCreator",
 			"content": "Особенности эмоционально-волевой сферы и поведения ребёнка",
 			"parameters": {
+				"type_block": "numbered_list",
 				"style": {
 					"style_by_paragraph": {
 						"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT"
@@ -129,16 +135,18 @@
 			}
 		},
 		{
-			"type": "create_custom_paragraph",
+			"type_of_block_handler": "BlockParagraphCreator",
 			"parameters": {
 				"style": {
-					"style_by_first_text": {
-						"text_size": 12,
-						"are_underline": true
-					},
-					"style_by_second_text": {
-						"text_size": 12
-					},
+					"style_by_content": [
+						{
+						 	"text_size": 12,
+							"are_underline": true
+						},
+						{
+							"text_size": 12
+						}
+					],
 					"style_by_paragraph": {
 						"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT",
 						"indent": 0.1
@@ -146,49 +154,49 @@
 				}
 			},
 			"content": [
-				{
-				   "translation": "Средство коммуникации: ",
-				   "value": "{{means_of_communication}}"
-			   },
-
-				{
-					"translation": "Особенности контакта ребёнка: ",
-					"value": "{{features_of_child_contact}}"
-				},
-				{
-					"translation": "Эмоциональная реакция на ситуацию обследования: ",
-					"value": "{{emotional_reaction}}"
-				},
-				{
-					"translation": "Реакция на одобрение: ",
-					"value": "{{reaction_to_approval}}"
-				},
-				{
-					"translation": "Реакция на замечание: ",
-					"value": "{{reaction_to_remark}}"
-				},
-				{
-					"translation": "Реакция на неудачу: ",
-					"value": "{{reaction_to_failure}}"
-				},
-				{
-					"translation": "Эмоциональное состояние во время выполнения заданий: ",
-					"value": "{{emotional_state}}"
-				},
-				{
-					"translation": "Общение: ",
-					"value": "{{communication}}"
-				},
-				{
-					"translation": "Реакция на результат: ",
-					"value": "{{reaction_to_the_result}}"
-				}
+				[
+					"Средство коммуникации: ",
+					"{{means_of_communication}}"
+				],
+				[
+					"Особенности контакта ребёнка: ",
+					"{{features_of_child_contact}}"
+				],
+				[
+					"Эмоциональная реакция на ситуацию обследования: ",
+					"{{emotional_reaction}}"
+				],
+				[
+					"Реакция на одобрение: ",
+					"{{reaction_to_approval}}"
+				],
+				[
+					"Реакция на замечание: ",
+					"{{reaction_to_remark}}"
+				],
+				[
+					"Реакция на неудачу: ",
+					"{{reaction_to_failure}}"
+				],
+				[
+					"Эмоциональное состояние во время выполнения заданий: ",
+					"{{emotional_state}}"
+				],
+				[
+					"Общение: ",
+					"{{communication}}"
+				],
+				[
+					"Реакция на результат: ",
+					"{{reaction_to_the_result}}"
+				]
 			]
 		},
 		{
-			"type": "create_numbered_list_heading",
+			"type_of_block_handler": "HeadingCreator",
 			"content": "Особенности деятельности во время обследования",
 			"parameters": {
+				"type_block": "numbered_list",
 				"style": {
 					"style_by_paragraph": {
 						"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT"
@@ -201,16 +209,18 @@
 			}
 		},
 		{
-			"type": "create_custom_paragraph",
+			"type_of_block_handler": "BlockParagraphCreator",
 			"parameters": {
 				"style": {
-					"style_by_first_text": {
-						"text_size": 12,
-						"are_underline": true
-					},
-					"style_by_second_text": {
-						"text_size": 12
-					},
+					"style_by_content": [
+						{
+							"text_size": 12,
+							"are_underline": true
+						},
+						{
+							"text_size": 12
+						}
+					],
 					"style_by_paragraph": {
 						"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT",
 						"indent": 0.1
@@ -218,47 +228,48 @@
 				}
 			},
 			"content": [
-				{
-					"translation": "Наличие и стойкость интереса к заданию: ",
-					"value": "{{presence_and_persistence}}"
-				},
-				{
-					"translation": "Понимание инструкции: ",
-					"value": "{{understanding_instructions}}"
-				},
-				{
-					"translation": "Ориентировочная деятельность: ",
-					"value": "{{indicative_activity}}"
-				},
-				{
-					"translation": "Самостоятельность выполнения заданий: ",
-					"value": "{{independence_of_completing_tasks}}"
-				},
-				{
-					"translation": "Характер деятельности (целенаправленность и активность): ",
-					"value": "{{nature_of_activity}}"
-				},
-				{
-					"translation": "Темп и динамика деятельности: ",
-					"value": "{{pace_and_dynamics_of_activity}}"
-				},
-				{
-					"translation": "Работоспособность: ",
-					"value": "{{efficiency}}"
-				},
-				{
-					"translation": "Особенности регуляции деятельности: ",
-					"value": "{{features_of_regulation_of_activity}}"
-				},
-				{
-					"translation": "Организация помощи: ",
-					"value": "{{organization_of_assistance}}"
-				}
+				[
+					"Наличие и стойкость интереса к заданию: ",
+					"{{presence_and_persistence}}"
+				],
+				[
+					"Понимание инструкции: ",
+					"{{understanding_instructions}}"
+				],
+				[
+					"Ориентировочная деятельность: ",
+					"{{indicative_activity}}"
+				],
+				[
+					"Самостоятельность выполнения заданий: ",
+					"{{independence_of_completing_tasks}}"
+				],
+				[
+					"Характер деятельности (целенаправленность и активность): ",
+					"{{nature_of_activity}}"
+				],
+				[
+					"Темп и динамика деятельности: ",
+					"{{pace_and_dynamics_of_activity}}"
+				],
+				[
+					"Работоспособность: ",
+					"{{efficiency}}"
+				],
+				[
+					"Особенности регуляции деятельности: ",
+					"{{features_of_regulation_of_activity}}"
+				],
+				[
+					"Организация помощи: ",
+					"{{organization_of_assistance}}"
+				]
 			]
 		},
 		{
-			"type": "create_numbered_list_heading",
+			"type_of_block_handler": "HeadingCreator",
 			"parameters": {
+				"type_block": "numbered_list",
 				"style": {
 					"style_by_paragraph": {
 						"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT"
@@ -272,16 +283,18 @@
 			"content": "Особенности познавательной сферы и моторной функции рук"
 		},
 		{
-			"type": "create_custom_paragraph",
+			"type_of_block_handler": "BlockParagraphCreator",
 			"parameters": {
 				"style": {
-					"style_by_first_text": {
-						"text_size": 12,
-						"are_underline": true
-					},
-					"style_by_second_text": {
-						"text_size": 12
-					},
+					"style_by_content": [
+						{
+							"text_size": 12,
+							"are_underline": true
+						},
+						{
+							"text_size": 12
+						}
+					],
 					"style_by_paragraph": {
 						"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT",
 						"indent": 0.1
@@ -289,44 +302,45 @@
 				}
 			},
 			"content": [
-				{
-					"translation": "Особенности внимания: ",
-					"value": "{{features_of_attention}}"
-				},
-				{
-					"translation": "Особенности восприятия: ",
-					"value": "{{features_of_perception}}"
-				},
-				{
-					"translation": "Особенности памяти: ",
-					"value": "{{memory_features}}"
-				},
-				{
-					"translation": "Особенности мышления: ",
-					"value": "{{features_of_thinking}}"
-				},
-				{
-					"translation": "Особенности речи: ",
-					"value": "{{features_of_speech}}"
-				},
-				{
-					"translation": "Особенности воображения: ",
-					"value": "{{features_of_imagination}}"
-				},
-				{
-					"translation": "Особенности моторной функции рук: ",
-					"value": "{{features_of_motor_function}}"
-				},
-				{
-					"translation": "Особенности крупной моторики: ",
-					"value": "{{features_of_large_motor_skills}}"
-				}
+				[
+					"Особенности внимания: ",
+					"{{features_of_attention}}"
+				],
+				[
+					"Особенности восприятия: ",
+					"{{features_of_perception}}"
+				],
+				[
+					"Особенности памяти: ",
+					"{{memory_features}}"
+				],
+				[
+					"Особенности мышления: ",
+					"{{features_of_thinking}}"
+				],
+				[
+					"Особенности речи: ",
+					"{{features_of_speech}}"
+				],
+				[
+					"Особенности воображения: ",
+					"{{features_of_imagination}}"
+				],
+				[
+					"Особенности моторной функции рук: ",
+					"{{features_of_motor_function}}"
+				],
+				[
+					"Особенности крупной моторики: ",
+					"{{features_of_large_motor_skills}}"
+				]
 			]
 		},
 		{
-			"type": "create_regular_heading",
+			"type_of_block_handler": "HeadingCreator",
 			"content": "Выводы и рекомендации по результатам психологического обследования",
 			"parameters": {
+				"type_block": "regular heading",
 				"style": {
 					"style_by_paragraph": {
 						"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT"
@@ -339,7 +353,7 @@
 			}
 		},
 		{
-			"type": "create_table_two_columns",
+			"type_of_block_handler": "TableCreator",
 			"parameters": {
 				"style": {
 					"style_for_first_column": {
@@ -361,30 +375,30 @@
 				}
 			},
 			"content": [
-				{
-					"translation": "Заключение:",
-					"value": "{{conclusion}}"
-				},
-				{
-					"translation": "Прогноз:",
-					"value": "{{forecast}}"
-				},
-				{
-					"translation": "Выводы о динамике:",
-					"value": "{{conclusions_about_dynamics}}"
-				},
-				{
-					"translation": "Общие рекомендации по сопровождению ребёнка:",
-					"value": "{{general_recommendations}}"
-				},
-				{
-					"translation": "Рекомендации родителям:",
-					"value": "{{recommendations_to_parents}}"
-				}
+				[
+					"Заключение:",
+					"{{conclusion}}"
+				],
+				[
+					"Прогноз:",
+					"{{forecast}}"
+				],
+				[
+					"Выводы о динамике:",
+					"{{conclusions_about_dynamics}}"
+				],
+				[
+					"Общие рекомендации по сопровождению ребёнка:",
+					"{{general_recommendations}}"
+				],
+				[
+					"Рекомендации родителям:",
+					"{{recommendations_to_parents}}"
+				]
 			]
 		},
 		{
-			"type": "empty_string"
+			"type_of_block_handler": "empty_string"
 		}
 	]
 }

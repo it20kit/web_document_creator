@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 from docx import Document
-from document_factory.document_descriptor import DocumentDescriptor
 
 
 class AbstractDocumentCreator(ABC):

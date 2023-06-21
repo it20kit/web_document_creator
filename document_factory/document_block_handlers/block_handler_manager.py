@@ -11,7 +11,6 @@ class BlockHandlerManager:
         self.handler = {
             "TableCreator": self.create_table_two_columns,
             "HeadingCreator": self.create_regular_heading,
-            "empty_string": self.empty_string,
             "BlockParagraphCreator": self.create_custom_paragraph
         }
 
@@ -20,20 +19,16 @@ class BlockHandlerManager:
 
     @staticmethod
     def create_table_two_columns(document: Document, data: dict):
-        TableCreator().create_block(document, data)
+        TableCreator().create_blog_based_on_data(document, data)
 
     @staticmethod
     def create_regular_heading(document: Document, data: dict):
-        HeadingCreator().create_block(document, data)
+        HeadingCreator().create_blog_based_on_data(document, data)
 
     @staticmethod
     def create_numbered_list_heading(document: Document, data: dict):
         HeadingCreator().create_numbered_list_heading(document, data)
 
     @staticmethod
-    def empty_string(document: Document, data: dict):
-        HeadingCreator.create_empty_heading(document)
-
-    @staticmethod
     def create_custom_paragraph(document: Document, data: dict):
-        BlockParagraphCreator().create_block(document, data)
+        BlockParagraphCreator().create_blog_based_on_data(document, data)

@@ -1,9 +1,27 @@
-from docx.enum.text import *
 from docx.shared import *
+from docx.enum.text import *
 
 
-class TextTool:
-    """Умеет создавать тест для со стилями для параграфов и таблиц и заголовков"""
+class DocumentStyleManager:
+    """Умеет задавать стили текста и стили абзацев"""
+    alignment: dict = {
+        "WD_PARAGRAPH_ALIGNMENT.CENTER": WD_PARAGRAPH_ALIGNMENT.CENTER,
+        "WD_PARAGRAPH_ALIGNMENT.LEFT": WD_PARAGRAPH_ALIGNMENT.LEFT,
+        "WD_PARAGRAPH_ALIGNMENT.RIGHT": WD_PARAGRAPH_ALIGNMENT.RIGHT
+    }
+
+    @staticmethod
+    def set_style_for_paragraph(paragraph, style: dict = None):
+        """Установить стиль для абзаца"""
+        if style is not None:
+            alignment = style.get('alignment')
+            if alignment is not None:
+                alignment = DocumentStyleManager.alignment[alignment]
+                paragraph.paragraph_format.alignment = alignment
+            indent = style.get('indent')
+            if indent is not None:
+                indent_size = Inches(indent)
+                paragraph.paragraph_format.left_indent = indent_size
 
     @staticmethod
     def set_text_style_by_parameters(text, style: dict = None) -> None:

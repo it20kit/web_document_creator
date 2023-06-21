@@ -1,5 +1,3 @@
-from document_factory.document_block_handlers.tools.text_style_tool import TextTool
-from document_factory.document_block_handlers.tools.paragraph_tool import ParagraphTool
 from docx.shared import *
 from document_factory.document_block_handlers.blocks_handlers.abstract_block_creator import AbstractBlockCreator
 from docx import Document
@@ -8,67 +6,58 @@ from docx import Document
 class TableCreator(AbstractBlockCreator):
     """Умеет создавать различные таблицы"""
 
+    def create_blog_based_on_data(self, document: Document, data: dict) -> None:
+        """Создает таблицу с любым количеством столбцов и строк по переданным данным"""
+        content = self.get_content_block_from_data(data)
+        styles = self.__get_styles_for_table_from_data(data)
+        size = self.__get_size_for_table_from_data(data)
+        rows = self.__count_number_of_rows(content)
+        cols = self.__count_number_of_cols(content)
+        table = self.__create_empty_table_by_parameters(document, rows, cols)
+        self.__set_size_of_table(table, size)
+        for number_row in range(len(content)):
+            self.__add_data_to_the_table(table, content[number_row], styles, number_row)
+
+    def __add_data_to_the_table(self, table, content: list, style: list, number_row: int) -> None:
+        """Заполнить таблицу данными"""
+        for number_cols in range(len(content)):
+            text = content[number_cols]
+            if self.is_value_empty(text) is False:
+                cell = table.cell(number_row, number_cols)
+                style_by_cell = style[number_cols]
+                paragraph_in_cells = cell.paragraphs[0]
+                self.add_content_in_paragraph(paragraph_in_cells, text, style_by_cell)
+
     @staticmethod
-    def create_empty_table_by_parameters(document, rows: int, cols: int):
+    def __create_empty_table_by_parameters(document: Document, rows: int, cols: int):
         """Создает пустую таблицу по числу строк и столбцов"""
         table = document.add_table(rows=rows, cols=cols)
         table.style = 'Table Grid'
         table.width = 1
         return table
 
-    # def create_table_with_two_columns_by_text_style(
-    #         self, table, data: list, style_one: dict = None, style_two: dict = None
-    # ):
-    #     for i in range(len(data)):
-    #         translation = data[i].get('translation')
-    #         value = data[i].get('value')
-    #         cell = table.cell(i, 0)
-    #         self.__add_content_for_cell_table(cell, translation, style_one)
-    #         if value is not None:
-    #             cell = table.cell(i, 1)
-    #             self.__add_content_for_cell_table(cell, value, style_two)
-    #     return table
-
-    # def create_table_two_columns(self, document, data: dict):
-    #     style_for_first_column = data.get('parameters').get('style').get('style_for_first_column')
-    #     style_for_second_column = data.get('parameters').get('style').get('style_for_second_column')
-    #     rows = data.get('parameters').get('table_size').get('number_of_rows_and_columns').get('rows')
-    #     table = self.create_table_with_two_columns_by_text_style(
-    #         self.create_empty_table_by_parameters(document, rows=rows, cols=2),
-    #         data.get('content'),
-    #         style_for_first_column,
-    #         style_for_second_column
-    #     )
-    #     size_by_table = data.get('parameters').get('table_size').get('size_columns')
-    #     if size_by_table is not None:
-    #         self.set_size_of_table(table, size_by_table)
+    @staticmethod
+    def __count_number_of_rows(content: list) -> int:
+        """Считает сколько строк в таблице по полученным данным"""
+        return len(content)
 
     @staticmethod
-    def __add_content_for_cell_table(cell, content, style: dict) -> None:
-        """Добавить текст в ячейку таблицы с переданными параметрами"""
-        text = cell.paragraphs[0].add_run(content)
-        ParagraphTool().set_style_for_paragraph(cell.paragraphs[0], style)
-        TextTool().set_text_style_by_parameters(text, style)
-
-    @staticmethod
-    def set_size_of_table(table, sizes: list):
-        for i in range(len(sizes)):
-            table.columns[i].width = Cm(sizes[i])
-
-    def create_block(self, document: Document, data: dict) -> None:
-        content = data.get('content')
-        rows = self.count_number_of_rows(content)
-        cols = self.count_number_of_cols(content)
-        table = self.create_empty_table_by_parameters(document, rows, cols)
-
-
-    @staticmethod
-    def count_number_of_rows(content: list):
+    def __count_number_of_cols(content: list) -> int:
+        """Считает сколько столбцов в таблице по полученным данным"""
         return len(content[0])
 
-    def count_number_of_cols(self, content: list):
-        counter = 0
-        for i in range(len(content)):
-            if self.are_there_empty_values_in_content(content[i]):
-                counter = counter + 1
-        return counter
+    @staticmethod
+    def __get_styles_for_table_from_data(data: dict):
+        """Получить стили для строк из полученных данных"""
+        return data.get('parameters').get('style').get('style_by_content')
+
+    @staticmethod
+    def __get_size_for_table_from_data(data: dict):
+        """Получить размеры столбцов для таблицы из данных"""
+        return data.get('parameters').get('table_size')
+
+    @staticmethod
+    def __set_size_of_table(table, sizes: list) -> None:
+        """Установить размеры ячеек для всей таблицы по переданным данным"""
+        for i in range(len(sizes)):
+            table.columns[i].width = Cm(sizes[i])

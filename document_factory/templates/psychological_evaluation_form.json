@@ -17,15 +17,11 @@
 			"type_of_block_handler": "HeadingCreator",
 			"content": "Заключение",
 			"parameters": {
-				"type_block": "regular heading",
+				"type_heading": "regular heading",
 				"style": {
-					"style_by_paragraph": {
-						"alignment": "WD_PARAGRAPH_ALIGNMENT.CENTER"
-					},
-					"style_by_text": {
-						"text_size": 20,
-						"are_bold": true
-					}
+					"alignment": "WD_PARAGRAPH_ALIGNMENT.CENTER",
+					"text_size": 20,
+					"are_bold": true
 				}
 			}
 		},
@@ -33,15 +29,11 @@
 			"type_of_block_handler": "HeadingCreator",
 			"content": "по результатам психологического обследования",
 			"parameters": {
-				"type_block": "regular heading",
+				"type_heading": "regular heading",
 				"style": {
-					"style_by_paragraph": {
-						"alignment": "WD_PARAGRAPH_ALIGNMENT.CENTER"
-					},
-					"style_by_text": {
-						"text_size": 14,
-						"are_bold": true
-					}
+					"alignment": "WD_PARAGRAPH_ALIGNMENT.CENTER",
+					"text_size": 14,
+					"are_bold": true
 				}
 			}
 		},
@@ -60,13 +52,7 @@
 						}
 					]
 				},
-				"table_size": {
-					"number_of_rows_and_columns": {
-						"rows": 7,
-						"columns": 2
-					},
-					"size_columns": [6, 12]
-				}
+				"table_size": [6, 12]
 			},
 			"content": [
 				[
@@ -100,21 +86,20 @@
 			]
 		},
 		{
-			"type_of_block_handler": "empty_string"
+			"type_of_block_handler": "HeadingCreator",
+			"parameters": {
+				"type_heading": "empty heading"
+			}
 		},
 		{
 			"type_of_block_handler": "HeadingCreator",
 			"content": "Результаты диагностики и наблюдения за ребёнком в ходе обследования",
 			"parameters": {
-				"type_block": "regular heading",
+				"type_heading": "regular heading",
 				"style": {
-					"style_by_paragraph": {
-						"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT"
-					},
-					"style_by_text": {
-						"text_size": 14,
-						"are_bold": true
-					}
+					"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT",
+					"text_size": 14,
+					"are_bold": true
 				}
 			}
 		},
@@ -122,15 +107,11 @@
 			"type_of_block_handler": "HeadingCreator",
 			"content": "Особенности эмоционально-волевой сферы и поведения ребёнка",
 			"parameters": {
-				"type_block": "numbered_list",
+				"type_heading": "numbered_list",
 				"style": {
-					"style_by_paragraph": {
-						"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT"
-					},
-					"style_by_text": {
-						"text_size": 12,
-						"are_bold": true
-					}
+					"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT",
+					"text_size": 12,
+					"are_bold": true
 				}
 			}
 		},
@@ -196,15 +177,11 @@
 			"type_of_block_handler": "HeadingCreator",
 			"content": "Особенности деятельности во время обследования",
 			"parameters": {
-				"type_block": "numbered_list",
+				"type_heading": "numbered_list",
 				"style": {
-					"style_by_paragraph": {
-						"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT"
-					},
-					"style_by_text": {
-						"text_size": 12,
-						"are_bold": true
-					}
+					"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT",
+					"text_size": 12,
+					"are_bold": true
 				}
 			}
 		},
@@ -269,15 +246,11 @@
 		{
 			"type_of_block_handler": "HeadingCreator",
 			"parameters": {
-				"type_block": "numbered_list",
+				"type_heading": "numbered_list",
 				"style": {
-					"style_by_paragraph": {
-						"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT"
-					},
-					"style_by_text": {
-						"text_size": 12,
-						"are_bold": true
-					}
+					"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT",
+					"text_size": 12,
+					"are_bold": true
 				}
 			},
 			"content": "Особенности познавательной сферы и моторной функции рук"
@@ -340,15 +313,11 @@
 			"type_of_block_handler": "HeadingCreator",
 			"content": "Выводы и рекомендации по результатам психологического обследования",
 			"parameters": {
-				"type_block": "regular heading",
+				"type_heading": "regular heading",
 				"style": {
-					"style_by_paragraph": {
-						"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT"
-					},
-					"style_by_text": {
-						"text_size": 14,
-						"are_bold": true
-					}
+					"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT",
+					"text_size": 14,
+					"are_bold": true
 				}
 			}
 		},
@@ -356,23 +325,19 @@
 			"type_of_block_handler": "TableCreator",
 			"parameters": {
 				"style": {
-					"style_for_first_column": {
-						"text_size": 12,
-						"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT",
-						"are_bold": true
-					},
-					"style_for_second_column": {
-						"text_size": 12,
-						"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT"
-					}
+					"style_by_content": [
+						{
+							"text_size": 12,
+							"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT",
+							"are_bold": true
+						},
+						{
+							"text_size": 12,
+							"alignment": "WD_PARAGRAPH_ALIGNMENT.LEFT"
+						}
+					]
 				},
-				"table_size": {
-					"number_of_rows_and_columns": {
-						"rows": 5,
-						"columns": 2
-					},
-					"size_columns": [6, 12]
-				}
+				"table_size": [6, 12]
 			},
 			"content": [
 				[
@@ -398,7 +363,11 @@
 			]
 		},
 		{
-			"type_of_block_handler": "empty_string"
+			"type_of_block_handler": "HeadingCreator",
+			"parameters": {
+				"type_heading": "empty heading"
+			}
+
 		}
 	]
 }

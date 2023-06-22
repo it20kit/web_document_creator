@@ -6,6 +6,7 @@ class TemplateCompiler:
     """Создает шаблон документа по заполненной форме"""
 
     def compile_template(self, path_to_template: str, form: object):
+        """Заполнить шаблон документа данными из формы"""
         form = self.make_dictionary_out_of_form(form)
         with open(path_to_template, 'r') as file:
             json_str = file.read()
@@ -19,9 +20,5 @@ class TemplateCompiler:
 
     @staticmethod
     def make_dictionary_out_of_form(form: object):
+        """Сделать из объекта словарь"""
         return vars(form)
-
-    def test(self, form):
-        for key, value in form.items():
-            print(type(value))
-

@@ -6,7 +6,7 @@ from docx import Document
 class TableCreator(AbstractBlockCreator):
     """Умеет создавать различные таблицы"""
 
-    def create_blog_based_on_data(self, document: Document, data: dict) -> None:
+    def create_block_based_on_data(self, document: Document, data: dict) -> None:
         """Создает таблицу с любым количеством столбцов и строк по переданным данным"""
         content = self.get_content_block_from_data(data)
         styles = self.__get_styles_for_table_from_data(data)

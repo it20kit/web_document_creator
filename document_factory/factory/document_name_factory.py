@@ -37,5 +37,6 @@ class DocumentNameFactory:
 
     @staticmethod
     def generate_document_name(length: int):
+        """Сгенерировать случайное имя документа"""
         letters = string.ascii_lowercase
         return ''.join(random.choice(letters) for i in range(length))

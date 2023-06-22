@@ -18,7 +18,8 @@ class PsychologicalEvaluationCreatorDocx(AbstractDocumentCreator):
 
     def add_block(self, document: Document, block: dict):
         block_type = block.get('type_of_block_handler')
-        block_creator = BlockHandlerManager().get_block_creators_by_type(block_type)
+        block_creator = BlockHandlerManager().get_handler_by_block_type(block_type)
+        print(block_creator)
         block_creator(document, block)
 
     @staticmethod
